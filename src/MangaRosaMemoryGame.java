@@ -1,7 +1,7 @@
 package games.mangarosa.com.br;
 import java.util.Scanner;
 
-public class JogoDaMemoria {
+public class MangaRosaMemoryGame {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
