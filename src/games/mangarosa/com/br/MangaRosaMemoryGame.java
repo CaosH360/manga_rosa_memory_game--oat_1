@@ -6,12 +6,12 @@ public class MangaRosaMemoryGame {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\nJogo da Memória");
-            System.out.println("1 - Start");
+            System.out.println("\n===== MANGA ROSA MEMORY GAME =====");
+            System.out.println("1 - Iniciar Jogo");
             System.out.println("2 - Pontuação");
             System.out.println("3 - Regras");
             System.out.println("4 - Sair");
-            System.out.print("Selecione o número da opção desejada:");
+            System.out.print("\"Selecione a opção desejada: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine();
@@ -27,7 +27,6 @@ public class MangaRosaMemoryGame {
 
             } else if (opcao == 4) {
                 System.out.println("Até logo!...");
-
                 break;
 
             } else {
@@ -91,8 +90,9 @@ public class MangaRosaMemoryGame {
         System.out.println("Jogadores: " + jogador1 + " vs " + jogador2);
         System.out.println("Boa sorte!");
 
-        //ESPAÇO RESERVADO PARA A LÓGICA DO JOGO + TABULIRO DE TESTE
-        mostrarTabuleiro(tamanho);
+        // Criar e iniciar a partida com o tamanho do tabuleiro e jogadores
+        Partida partida = new Partida(tamanho, jogador1, jogador2);
+        partida.iniciarJogo();
     }
 
     private static void mostrarTabuleiro(int tamanho) {
