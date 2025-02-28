@@ -87,7 +87,7 @@ public class MangaRosaMemoryGame {
 
         }
 
-        System.out.println("\nTabuleiro " + tamanho + "x" + tamanho + " escolhido!");
+        System.out.println("\ngames.mangarosa.com.br.Tabuleiro " + tamanho + "x" + tamanho + " escolhido!");
         System.out.println("Jogadores: " + jogador1 + " vs " + jogador2);
         System.out.println("Boa sorte!");
 
@@ -96,7 +96,7 @@ public class MangaRosaMemoryGame {
     }
 
     private static void mostrarTabuleiro(int tamanho) {
-        System.out.println("\nTabuleiro: ");
+        System.out.println("\ngames.mangarosa.com.br.Tabuleiro: ");
         for (int i = 0; i < tamanho; i++) {
             for (int j = 0; j < tamanho; j++) {
                 System.out.print("C ");

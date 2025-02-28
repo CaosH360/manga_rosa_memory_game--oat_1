@@ -1,3 +1,5 @@
+package games.mangarosa.com.br;
+
 import java.util.*;
 
 public class Tabuleiro {
@@ -79,7 +81,7 @@ public class Tabuleiro {
     }
 
     public void exibirTabuleiro(boolean revelarALL){
-        System.out.println("Tabuleiro:");
+        System.out.println("games.mangarosa.com.br.Tabuleiro:");
         System.out.print("  ");
 
         //Gera o cabeçalho numerado
