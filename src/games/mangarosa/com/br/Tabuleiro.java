@@ -36,26 +36,26 @@ public class Tabuleiro {
         for (int i = 0; i < paresVermelhos; i++){
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++){
-                cartas.add(new Carta(code , "Vermelho"));
+                cartas.add(new Carta(code , "\u001B[41m"));
             }
         }
 
         for (int i = 0; i < paresAzuis; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "Azul"));
+                cartas.add(new Carta(code, "\u001B[44m"));
             }
         }
         for (int i = 0; i < parPreto; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "Preto"));
+                cartas.add(new Carta(code, "\u001B[40m"));
             }
         }
         for (int i = 0; i < paresAmarelos; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "Amarelo"));
+                cartas.add(new Carta(code, "\u001B[43m"));
             }
         }
 
