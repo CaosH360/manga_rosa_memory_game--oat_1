@@ -80,28 +80,6 @@ public class Tabuleiro {
         return "" + c1 + c2;
     }
 
-    public void exibirTabuleiro(boolean revelarALL){
-        System.out.println("games.mangarosa.com.br.Tabuleiro:");
-        System.out.print("  ");
-
-        //Gera o cabeçalho numerado
-        for (int j = 0; j < size; j++){
-            System.out.printf("%-5d" , (j + 1));
-        }
-        System.out.println();
-        for (int i = 0; i < size; i++){
-            System.out.printf("%-3d" , (i + 1));
-            for (int j = 0; j < size; j++){
-                if (board[i][j].isRevelada() || revelarALL){
-                    System.out.printf("%-5s" , board[i][j].getCodigo());
-                } else{
-                    System.out.printf("%-5s" , "C");
-                }
-            }
-            System.out.println();
-        }
-    }
-
     public static class Carta {
         private String codigo;
         private String corFundo;
@@ -126,7 +104,64 @@ public class Tabuleiro {
         }
 
         public void setRevelada(boolean revelada){
-            this.revelada = revelada;
+            this.revelada = revelada;}
+    }
+
+    // Método para verificar se duas cartas reveladas sao um par
+    public boolean verificarPar(int x1, int y1, int x2, int y2){
+        return board[x1][y2].getCodigo().equals(board[x2][y2].getCodigo());
+    }
+
+    // Método para revelar uma carta
+    public void revelarCarta(int x, int y){
+        board[x][y].setRevelada(true);
+    }
+
+    // Método para ocultar duas cartas caso elas nao sejam um par
+    public void ocultarCartas(int x1, int y1, int x2, int y2){
+        board[x1][y1].setRevelada(false);
+        board[x2][y2].setRevelada(false);
+    }
+
+    // Verifica se todas as cartas já foram encontradas
+
+    public boolean todasAsCartasReveladas(){
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (!board[i][j].isRevelada()){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    // Método para exibir o tabuleiro no terminal
+    public void exibirTabuleiro(boolean revelarALL){
+        System.out.println("games.mangarosa.com.br.MangaRosaMemoryGame:");
+        System.out.print("  ");
+
+        //Gera o cabeçalho numerado
+        for (int j = 0; j < size; j++){
+            System.out.printf("%-5d" , (j + 1));
+        }
+        System.out.println();
+        for (int i = 0; i < size; i++){
+            System.out.printf("%-3d" , (i + 1));
+            for (int j = 0; j < size; j++){
+                if (board[i][j].isRevelada() || revelarALL){
+                    System.out.printf("%-5s" , board[i][j].getCodigo());
+                } else{
+                    System.out.printf("%-5s" , "C");
+                }
+            }
+            System.out.println();
         }
     }
+
+    // Método para obter uma carta do tabuleiro
+    public Carta getCarta(int x, int y) {
+        return board[x][y];
+    }
+
 }
