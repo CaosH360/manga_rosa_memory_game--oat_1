@@ -31,6 +31,6 @@ public class Jogador {
     }
 
     public boolean isEmpty(){
-        return isEmpty();
+        return true;
     }
 }
