@@ -1,5 +1,3 @@
-package games.mangarosa.com.br;
-
 public class Jogador {
     private String nome;
     private String cor;

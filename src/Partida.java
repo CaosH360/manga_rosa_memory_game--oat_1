@@ -1,5 +1,3 @@
-package games.mangarosa.com.br;
-
 import java.util.Scanner;
 
 public class Partida {

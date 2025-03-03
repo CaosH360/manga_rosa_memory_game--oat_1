@@ -1,5 +1,3 @@
-package games.mangarosa.com.br;
-
 import java.util.*;
 
 public class Tabuleiro {
@@ -143,7 +141,7 @@ public class Tabuleiro {
 
     // Método para exibir o tabuleiro no terminal
     public void exibirTabuleiro(boolean revelarALL){
-        System.out.println("games.mangarosa.com.br.MangaRosaMemoryGame:");
+        System.out.println("MangaRosaMemoryGame:");
         System.out.print("  ");
 
         //Gera o cabeçalho numerado
