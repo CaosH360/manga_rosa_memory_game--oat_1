@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class MangaRosaMemoryGame {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -65,7 +66,7 @@ public class MangaRosaMemoryGame {
 
         System.out.println("Nome do jogador 1: ");
         String nomeJogador1 = scanner.nextLine().trim();
-        String corJogador1 = "azul";
+        String corJogador1 = "\u001B[44m";
 
         //cria o objeto jogador
         Jogador jogador1 = new Jogador(nomeJogador1, corJogador1);
@@ -77,13 +78,14 @@ public class MangaRosaMemoryGame {
 
         System.out.print("\nNome do jogador 2: ");
         String nomeJogador2 = scanner.nextLine().trim();
-        String corJogador2 = "Vermelho";
+        String corJogador2 = "\u001B[41m";
 
         //cria o objeto jogador
         Jogador jogador2 = new Jogador(nomeJogador2, corJogador2);
 
         //ainda falta alteração
-        if (jogador2.isEmpty()) {
+        if (jogador2 == " ") {
+            // tá dando erro e fazer com que se o nome do jogador estiver vazio, o nome dele será:
             nomeJogador2 = "PARTICIPANTE02";
         }
 
@@ -96,13 +98,5 @@ public class MangaRosaMemoryGame {
         partida.iniciar();
     }
 
-    private static void mostrarTabuleiro(int tamanho) {
-        System.out.println("Tabuleiro: ");
-        for (int i = 0; i < tamanho; i++) {
-            for (int j = 0; j < tamanho; j++) {
-                System.out.print("C ");
-            }
-            System.out.println();
-        }
-    }
+
 }

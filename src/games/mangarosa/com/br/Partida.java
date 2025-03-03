@@ -5,13 +5,19 @@ import java.util.Scanner;
 public class Partida {
     private Tabuleiro tabuleiro;
     private int tentativasInvalidas;
+    private Jogador jogador1;
+    private Jogador jogador2;
+    private Jogador jogadorAtual;
 
     public Partida(int tamanho, Jogador jogador1, Jogador jogador2) {
         this.tabuleiro = new Tabuleiro(tamanho);
         this.tentativasInvalidas = 0;
+        this.jogador1 = jogador1;
+        this.jogador2 = jogador2;
+        this.jogadorAtual = jogador1; // Começa com o primeiro jogador
     }
 
-    public void iniciar () {
+    public void iniciar() {
         Scanner scanner = new Scanner(System.in);
 
         // Exibe o tabuleiro inicial
@@ -20,11 +26,13 @@ public class Partida {
 
         // Loop para permitir que o jogador escolha posições
         while (tentativasInvalidas < 3) {
+            System.out.println("\nVez do jogador: " + jogadorAtual.getCor() + jogadorAtual.getNome() + "\u001B[0m");
+
             System.out.println("Escolha as posições da linha e coluna que deseja: ");
-            System.out.println("Você deseja a linha de 1 a " + tabuleiro.getSize() + "): ");
+            System.out.println("Linha (1 a " + tabuleiro.getSize() + "): ");
             int linha = scanner.nextInt();
 
-            System.out.println("Você deseja a coluna de 1 a " + tabuleiro.getSize() + "): ");
+            System.out.println("Coluna (1 a " + tabuleiro.getSize() + "): ");
             int coluna = scanner.nextInt();
 
             // Tenta virar a carta
@@ -32,19 +40,22 @@ public class Partida {
             if (sucesso) {
                 System.out.println("\nTabuleiro Atualizado:");
                 tabuleiro.exibirTabuleiro(false);
-                break;
             } else {
-                tentativasInvalidas ++;
-                System.out.println("Você perdeu, você errou : " + tentativasInvalidas);
+                tentativasInvalidas++;
+                System.out.println("Você errou! Tentativas erradas: " + tentativasInvalidas);
             }
 
+            // Alterna para o próximo jogador
+            trocarTurno();
         }
 
         // Verifica se o jogador perdeu a vez
-        if ( tentativasInvalidas == 3 ){
+        if (tentativasInvalidas == 3) {
             System.out.println("Você errou três vezes, perdeu!");
         }
+    }
 
-        scanner.close(); // Fecha o Scanner
+    private void trocarTurno() {
+        jogadorAtual = (jogadorAtual == jogador1) ? jogador2 : jogador1;
     }
 }

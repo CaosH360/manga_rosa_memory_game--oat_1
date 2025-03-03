@@ -36,26 +36,26 @@ public class Tabuleiro {
         for (int i = 0; i < paresVermelhos; i++){
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++){
-                cartas.add(new Carta(code , "\u001B[41m")); //vermelho
+                cartas.add(new Carta("\u001B[41m", code)); //vermelho
             }
         }
 
         for (int i = 0; i < paresAzuis; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[44m")); //azul
+                cartas.add(new Carta("\u001B[44m", code)); //azul
             }
         }
         for (int i = 0; i < parPreto; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[40m")); //preto
+                cartas.add(new Carta("\u001B[40m", code)); //preto
             }
         }
         for (int i = 0; i < paresAmarelos; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[43m")); //amarelo
+                cartas.add(new Carta("\u001B[43m", code)); //amarelo
             }
         }
 
@@ -85,7 +85,7 @@ public class Tabuleiro {
         private String corFundo;
         private boolean revelada;
 
-        public Carta(String codigo, String corFundo){
+        public Carta(String corFundo, String codigo){
             this.codigo = codigo;
             this.corFundo = corFundo;
             this.revelada = false;
@@ -108,8 +108,8 @@ public class Tabuleiro {
     }
 
     // Método para verificar se duas cartas reveladas sao um par
-    public boolean verificarPar(int x1, int y1, int x2, int y2){
-        return board[x1][y2].getCodigo().equals(board[x2][y2].getCodigo());
+    public boolean verificarPar(int linha1, int coluna1, int linha2, int coluna2){
+        return board[linha1][coluna1].getCodigo().equals(board[linha2][coluna2].getCodigo());
     }
 
     // Método para revelar uma carta
@@ -123,9 +123,9 @@ public class Tabuleiro {
     }
 
     // Método para ocultar duas cartas caso elas nao sejam um par
-    public void ocultarCartas(int x1, int y1, int x2, int y2){
-        board[x1][y1].setRevelada(false);
-        board[x2][y2].setRevelada(false);
+    public void ocultarCartas(int linha1, int coluna1, int linha2, int coluna2){
+        board[linha1][coluna1].setRevelada(false);
+        board[linha2][coluna2].setRevelada(false);
     }
 
     // Verifica se todas as cartas já foram encontradas

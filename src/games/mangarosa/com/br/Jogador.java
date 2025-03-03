@@ -11,6 +11,7 @@ public class Jogador {
         this.cor = cor;
     }
 
+
     public String getNome(){
         return nome;
     }
@@ -30,7 +31,7 @@ public class Jogador {
         }
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return true;
     }
 }
