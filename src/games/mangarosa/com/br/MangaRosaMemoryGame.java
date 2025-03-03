@@ -11,14 +11,13 @@ public class MangaRosaMemoryGame {
             System.out.println("2 - Pontuação");
             System.out.println("3 - Regras");
             System.out.println("4 - Sair");
-            System.out.print("\"Selecione a opção desejada: ");
+            System.out.print("\n Selecione a opção desejada: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine();
 
             if (opcao == 1) {
                 iniciarJogo(scanner);
-
             } else if (opcao == 2) {
                 System.out.println("IMPLEMENTAR PONTUAÇÕES");
 
@@ -50,40 +49,42 @@ public class MangaRosaMemoryGame {
         int tamanho;
         
         if (escolha == 1) {
-            
             tamanho = 4;
-            
         } else if (escolha == 2) {
-            
             tamanho = 6;
-            
         } else if (escolha == 3) {
-            
             tamanho = 8;
-            
         } else if (escolha == 4) {
-
             tamanho = 10;
         } else {
             System.out.println("Opção inválida, tente novamente.");
             return;
         }
 
-        System.out.print("\nNome do jogador 1: ");
-        String jogador1 = scanner.nextLine().trim();
+        Tabuleiro tabuleiro = new Tabuleiro(tamanho);
 
-        if (jogador1.isEmpty()) {
+        System.out.println("Nome do jogador 1: ");
+        String nomeJogador1 = scanner.nextLine().trim();
+        String corJogador1 = "azul";
 
-            jogador1 = "PARTICIPANTE01";
+        //cria o objeto jogador
+        Jogador jogador1 = new Jogador(nomeJogador1, corJogador1);
 
+        //ainda falta alteração
+        if (jogador1.isEmpty()){
+            nomeJogador1 = "PARTICIPANTE01";
         }
+
         System.out.print("\nNome do jogador 2: ");
-        String jogador2 = scanner.nextLine().trim();
+        String nomeJogador2 = scanner.nextLine().trim();
+        String corJogador2 = "Vermelho";
 
+        //cria o objeto jogador
+        Jogador jogador2 = new Jogador(nomeJogador2, corJogador2); // dmsadmasndoasidanodas
+
+        //ainda falta alteração
         if (jogador2.isEmpty()) {
-
-            jogador2 = "PARTICIPANTE02";
-
+            nomeJogador2 = "PARTICIPANTE02";
         }
 
         System.out.println("\ngames.mangarosa.com.br.Tabuleiro " + tamanho + "x" + tamanho + " escolhido!");
@@ -92,7 +93,7 @@ public class MangaRosaMemoryGame {
 
         // Criar e iniciar a partida com o tamanho do tabuleiro e jogadores
         Partida partida = new Partida(tamanho, jogador1, jogador2);
-        partida.iniciarJogo();
+        partida.iniciar();
     }
 
     private static void mostrarTabuleiro(int tamanho) {
