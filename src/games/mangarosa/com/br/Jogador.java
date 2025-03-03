@@ -3,12 +3,12 @@ package games.mangarosa.com.br;
 public class Jogador {
     private String nome;
     private String cor;
-    private int pontucao;
+    private int pontucao = 0;
 
-    public Jogador(String nome, String cor, int pontuacao){
+    //Construtor
+    public Jogador(String nome, String cor){
         this.nome = nome;
         this.cor = cor;
-        this.pontucao = 0;
     }
 
     public String getNome(){
@@ -28,5 +28,9 @@ public class Jogador {
         if (this.pontucao < 0){
             this.pontucao = 0;
         }
+    }
+
+    public boolean isEmpty(){
+        return isEmpty();
     }
 }
