@@ -38,6 +38,7 @@ public class Tabuleiro {
             }
         }
 
+
         for (int i = 0; i < paresAzuis; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
