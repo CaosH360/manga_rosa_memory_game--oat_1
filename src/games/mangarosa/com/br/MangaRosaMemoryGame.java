@@ -106,7 +106,3 @@ public class MangaRosaMemoryGame {
         }
     }
 }
-
-
-
-
