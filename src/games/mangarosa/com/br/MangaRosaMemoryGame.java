@@ -65,31 +65,30 @@ public class MangaRosaMemoryGame {
 
         System.out.println("Nome do jogador 1: ");
         String nomeJogador1 = scanner.nextLine().trim();
-        String corJogador1 = "\u001B[44m";
-
-        //ainda falta alteração
-        if (!nomeJogador1.isEmpty()){
-            nomeJogador1 = "PARTICIPANTE01";
-        }
+        String corJogador1 = "azul";
 
         //cria o objeto jogador
         Jogador jogador1 = new Jogador(nomeJogador1, corJogador1);
 
+        //ainda falta alteração
+        if (jogador1.isEmpty()){
+            nomeJogador1 = "PARTICIPANTE01";
+        }
+
         System.out.print("\nNome do jogador 2: ");
         String nomeJogador2 = scanner.nextLine().trim();
-        String corJogador2 = "\u001B[41m";
-
-        //ainda falta alteração
-        if (!nomeJogador2.isEmpty()) {
-            nomeJogador2 = "PARTICIPANTE02";
-        }
+        String corJogador2 = "Vermelho";
 
         //cria o objeto jogador
         Jogador jogador2 = new Jogador(nomeJogador2, corJogador2);
 
+        //ainda falta alteração
+        if (jogador2.isEmpty()) {
+            nomeJogador2 = "PARTICIPANTE02";
+        }
 
-        System.out.println("\ngames.mangarosa.com.br.Tabuleiro " + tamanho + "x" + tamanho + " escolhido!");
-        System.out.println("Jogadores: " + jogador1 + " vs " + jogador2);
+        System.out.println("Tabuleiro " + tamanho + "x" + tamanho + " escolhido!");
+        System.out.println("Jogadores: " + nomeJogador1 + " vs " + nomeJogador2);
         System.out.println("Boa sorte!");
 
         // Criar e iniciar a partida com o tamanho do tabuleiro e jogadores
@@ -98,7 +97,7 @@ public class MangaRosaMemoryGame {
     }
 
     private static void mostrarTabuleiro(int tamanho) {
-        System.out.println("\ngames.mangarosa.com.br.Tabuleiro: ");
+        System.out.println("Tabuleiro: ");
         for (int i = 0; i < tamanho; i++) {
             for (int j = 0; j < tamanho; j++) {
                 System.out.print("C ");

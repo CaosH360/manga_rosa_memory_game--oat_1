@@ -168,5 +168,4 @@ public class Tabuleiro {
     public Carta getCarta(int x, int y) {
         return board[x][y];
     }
-
 }

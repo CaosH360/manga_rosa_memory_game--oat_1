@@ -21,14 +21,14 @@ public class Partida {
         // Loop para permitir que o jogador escolha posições
         while (tentativasInvalidas < 3) {
             System.out.println("Escolha as posições da linha e coluna que deseja: ");
-            System.out.println("Você deseja a linha de 0 a " + (tabuleiro.getSize() - 1) + "): ");
+            System.out.println("Você deseja a linha de 1 a " + tabuleiro.getSize() + "): ");
             int linha = scanner.nextInt();
 
-            System.out.println("Você deseja a coluna de 0 a " + (tabuleiro.getSize() - 1) + "): ");
+            System.out.println("Você deseja a coluna de 1 a " + tabuleiro.getSize() + "): ");
             int coluna = scanner.nextInt();
 
             // Tenta virar a carta
-            boolean sucesso = tabuleiro.revelarCarta(linha, coluna);
+            boolean sucesso = tabuleiro.revelarCarta((linha - 1), (coluna - 1));
             if (sucesso) {
                 System.out.println("\nTabuleiro Atualizado:");
                 tabuleiro.exibirTabuleiro(false);
