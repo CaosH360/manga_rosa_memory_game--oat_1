@@ -65,27 +65,28 @@ public class MangaRosaMemoryGame {
 
         System.out.println("Nome do jogador 1: ");
         String nomeJogador1 = scanner.nextLine().trim();
-        String corJogador1 = "azul";
+        String corJogador1 = "\u001B[44m";
+
+        //ainda falta alteração
+        if (!nomeJogador1.isEmpty()){
+            nomeJogador1 = "PARTICIPANTE01";
+        }
 
         //cria o objeto jogador
         Jogador jogador1 = new Jogador(nomeJogador1, corJogador1);
 
-        //ainda falta alteração
-        if (jogador1.isEmpty()){
-            nomeJogador1 = "PARTICIPANTE01";
-        }
-
         System.out.print("\nNome do jogador 2: ");
         String nomeJogador2 = scanner.nextLine().trim();
-        String corJogador2 = "Vermelho";
-
-        //cria o objeto jogador
-        Jogador jogador2 = new Jogador(nomeJogador2, corJogador2); // dmsadmasndoasidanodas
+        String corJogador2 = "\u001B[41m";
 
         //ainda falta alteração
-        if (jogador2.isEmpty()) {
+        if (!nomeJogador2.isEmpty()) {
             nomeJogador2 = "PARTICIPANTE02";
         }
+
+        //cria o objeto jogador
+        Jogador jogador2 = new Jogador(nomeJogador2, corJogador2);
+
 
         System.out.println("\ngames.mangarosa.com.br.Tabuleiro " + tamanho + "x" + tamanho + " escolhido!");
         System.out.println("Jogadores: " + jogador1 + " vs " + jogador2);

@@ -4,11 +4,11 @@ import java.util.*;
 
 public class Tabuleiro {
     private Carta[][] board;
-    private int size;
+    private int tamanho;
 
-    public Tabuleiro(int size){
-        this.size = size;
-        board = new Carta[size][size];
+    public Tabuleiro(int tamanho){
+        this.tamanho = tamanho;
+        board = new Carta[tamanho][tamanho];
         gerarTabuleiro();
     }
 
@@ -17,12 +17,12 @@ public class Tabuleiro {
     }
 
     public int getSize(){
-        return size;
+        return tamanho;
     }
 
     private void gerarTabuleiro(){
         //Distribuição das cartas
-        int totalCartas = size * size;
+        int totalCartas = tamanho * tamanho;
         int totalPares = totalCartas / 2;
         int blueRedpares = totalPares / 2;
         int parPreto = 1;
@@ -36,26 +36,26 @@ public class Tabuleiro {
         for (int i = 0; i < paresVermelhos; i++){
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++){
-                cartas.add(new Carta(code , "\u001B[41m"));
+                cartas.add(new Carta(code , "\u001B[41m")); //vermelho
             }
         }
 
         for (int i = 0; i < paresAzuis; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[44m"));
+                cartas.add(new Carta(code, "\u001B[44m")); //azul
             }
         }
         for (int i = 0; i < parPreto; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[40m"));
+                cartas.add(new Carta(code, "\u001B[40m")); //preto
             }
         }
         for (int i = 0; i < paresAmarelos; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[43m"));
+                cartas.add(new Carta(code, "\u001B[43m")); //amarelo
             }
         }
 
@@ -64,8 +64,8 @@ public class Tabuleiro {
 
         //Preenche o tabuleiro
         Iterator<Carta> it = cartas.iterator();
-        for (int i = 0; i < size; i++){
-            for (int j = 0; j < size; j++){
+        for (int i = 0; i < tamanho; i++){
+            for (int j = 0; j < tamanho; j++){
                 board[i][j] = it.next();
             }
         }
@@ -113,8 +113,13 @@ public class Tabuleiro {
     }
 
     // Método para revelar uma carta
-    public void revelarCarta(int x, int y){
-        board[x][y].setRevelada(true);
+    public boolean revelarCarta(int linha, int coluna) {
+        if (!board[linha][coluna].isRevelada()) { // Se a carta ainda estiver oculta
+            board[linha][coluna].setRevelada(true);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Método para ocultar duas cartas caso elas nao sejam um par
@@ -126,8 +131,8 @@ public class Tabuleiro {
     // Verifica se todas as cartas já foram encontradas
 
     public boolean todasAsCartasReveladas(){
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        for (int i = 0; i < tamanho; i++) {
+            for (int j = 0; j < tamanho; j++) {
                 if (!board[i][j].isRevelada()){
                     return false;
                 }
@@ -142,15 +147,15 @@ public class Tabuleiro {
         System.out.print("  ");
 
         //Gera o cabeçalho numerado
-        for (int j = 0; j < size; j++){
+        for (int j = 0; j < tamanho; j++){
             System.out.printf("%-5d" , (j + 1));
         }
         System.out.println();
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < tamanho; i++){
             System.out.printf("%-3d" , (i + 1));
-            for (int j = 0; j < size; j++){
+            for (int j = 0; j < tamanho; j++){
                 if (board[i][j].isRevelada() || revelarALL){
-                    System.out.printf("%-5s" , board[i][j].getCodigo());
+                    System.out.printf("%-5s"  + "\u001B[0m", board[i][j].getCodigo());
                 } else{
                     System.out.printf("%-5s" , "C");
                 }
