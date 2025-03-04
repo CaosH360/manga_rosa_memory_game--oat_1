@@ -89,7 +89,7 @@ public class MangaRosaMemoryGame {
         }
 
         System.out.println("Tabuleiro " + tamanho + "x" + tamanho + " escolhido!");
-        System.out.println("Jogadores: " + nomeJogador1 + " vs " + nomeJogador2);
+        System.out.println("Jogadores: " + corJogador1 + nomeJogador1 + "\u001B[0m vs " + corJogador2 + nomeJogador2 + "\u001B[0m");
         System.out.println("Boa sorte!");
 
         // Criar e iniciar a partida com o tamanho do tabuleiro e jogadores

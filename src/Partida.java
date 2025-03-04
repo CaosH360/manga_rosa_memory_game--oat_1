@@ -34,7 +34,7 @@ public class Partida {
             int coluna = scanner.nextInt();
 
             // Tenta virar a carta
-            boolean sucesso = tabuleiro.virarCarta((linha - 1), (coluna - 1));
+            boolean sucesso = tabuleiro.revelarCarta((linha - 1), (coluna - 1));
             if (sucesso) {
                 System.out.println("\nTabuleiro Atualizado:");
                 tabuleiro.exibirTabuleiro(false);
