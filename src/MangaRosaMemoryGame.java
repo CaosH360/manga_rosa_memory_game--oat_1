@@ -71,7 +71,7 @@ public class MangaRosaMemoryGame {
         Jogador jogador1 = new Jogador(nomeJogador1, corJogador1);
 
         //ainda falta alteração
-        if (jogador1.isEmpty()){
+        if (nomeJogador1.isEmpty()){
             nomeJogador1 = "PARTICIPANTE01";
         }
 
@@ -83,8 +83,8 @@ public class MangaRosaMemoryGame {
         Jogador jogador2 = new Jogador(nomeJogador2, corJogador2);
 
         //ainda falta alteração
-        if (jogador2 == " ") {
-            // tá dando erro e fazer com que se o nome do jogador estiver vazio, o nome dele será:
+        if (nomeJogador2.isEmpty()) {
+            // a ideia é que ele caso não coloque nada no nome, o nome será "PARTICIPANTE"
             nomeJogador2 = "PARTICIPANTE02";
         }
 
