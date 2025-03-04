@@ -1,6 +1,10 @@
+
 import java.util.Scanner;
 
 public class MangaRosaMemoryGame {
+
+    private static Partida partida = null;// Agora a partida é uma variável de classe pq se não o valor não ia conseguir
+
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -19,10 +23,15 @@ public class MangaRosaMemoryGame {
             if (opcao == 1) {
                 iniciarJogo(scanner);
             } else if (opcao == 2) {
-                System.out.println("IMPLEMENTAR PONTUAÇÕES");
-
+                System.out.println("Pontuação atual:");/* vai puxar a funcao mostrarPontuacao se nao for vazio */
+                if (partida != null) {
+                    partida.mostrarPontuacao();
+                } else {
+                    System.out.println("O jogo ainda não foi iniciado.");
+                }
             } else if (opcao == 3) {
-                System.out.println("IMPLEMENTAR REGRAS");
+                System.out.println("Regras: O jogo consiste em virar cartas para formar pares de cartas");
+                /* regras */
 
             } else if (opcao == 4) {
                 System.out.println("Até logo!...");
@@ -47,7 +56,7 @@ public class MangaRosaMemoryGame {
         int escolha = scanner.nextInt();
         scanner.nextLine();
         int tamanho;
-        
+
         if (escolha == 1) {
             tamanho = 4;
         } else if (escolha == 2) {
@@ -66,36 +75,32 @@ public class MangaRosaMemoryGame {
         System.out.println("Nome do jogador 1: ");
         String nomeJogador1 = scanner.nextLine().trim();
         String corJogador1 = "\u001B[30m\u001B[44m"; //azul
+        if (nomeJogador1.isEmpty()) {
+            nomeJogador1 = "PARTICIPANTE01";
+        }/* joguei para cima o if para ficar padrao "jogador1" caso nao coloque nenhum nome */
 
         //cria o objeto jogador
         Jogador jogador1 = new Jogador(nomeJogador1, corJogador1);
 
         //ainda falta alteração
-        if (nomeJogador1.isEmpty()){
-            nomeJogador1 = "PARTICIPANTE01";
-        }
-
         System.out.print("\nNome do jogador 2: ");
         String nomeJogador2 = scanner.nextLine().trim();
         String corJogador2 = "\u001B[41m"; //vermelho
-
+        if (nomeJogador2.isEmpty()) {
+            // a ideia é que ele caso não coloque nada no nome, o nome será "PARTICIPANTE"
+            nomeJogador2 = "PARTICIPANTE02";/* Nmesma coisa de cima */
+        }
         //cria o objeto jogador
         Jogador jogador2 = new Jogador(nomeJogador2, corJogador2);
 
         //ainda falta alteração
-        if (nomeJogador2.isEmpty()) {
-            // a ideia é que ele caso não coloque nada no nome, o nome será "PARTICIPANTE"
-            nomeJogador2 = "PARTICIPANTE02";
-        }
-
         System.out.println("Tabuleiro " + tamanho + "x" + tamanho + " escolhido!");
         System.out.println("Jogadores: " + corJogador1 + nomeJogador1 + "\u001B[0m vs " + corJogador2 + nomeJogador2 + "\u001B[0m");
         System.out.println("Boa sorte!");
 
         // Criar e iniciar a partida com o tamanho do tabuleiro e jogadores
-        Partida partida = new Partida(tamanho, jogador1, jogador2);
+        partida = new Partida(tamanho, jogador1, jogador2);/* Permitir acessar os pontos fora do metodo */
         partida.iniciar();
     }
-
 
 }

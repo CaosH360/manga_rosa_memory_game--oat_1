@@ -1,33 +1,34 @@
+
 public class Jogador {
+
     private String nome;
     private String cor;
-    private int pontucao = 0;
+    private int pontos;
+
+    /* Tava pontuacao, mudei para pontos */
 
     //Construtor
-    public Jogador(String nome, String cor){
+    public Jogador(String nome, String cor) {
         this.nome = nome;
         this.cor = cor;
+        this.pontos = 0;/* Adicionei o pontos no contrutor */
     }
 
-
-    public String getNome(){
+    public String getNome() {
         return nome;
     }
 
-    public String getCor(){
+    public String getCor() {
         return cor;
     }
 
-    public int getPontucao(){
-        return pontucao;
+    public int getPontos() {
+        return pontos;/* Mudei para pontos */
     }
 
-    public void adicionarPontos(int pontos){
-        this.pontucao += pontos;
-        if (this.pontucao < 0){
-            this.pontucao = 0;
-        }
-
+    public void aumentarPontos() {
+        this.pontos++;
+        /* metodo para adicionar pontos */
     }
 
     public boolean isEmpty() {

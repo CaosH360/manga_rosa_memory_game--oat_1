@@ -1,6 +1,8 @@
+
 import java.util.Scanner;
 
 public class Partida {
+
     private Tabuleiro tabuleiro;
     private int tentativasInvalidas;
     private Jogador jogador1;
@@ -38,6 +40,8 @@ public class Partida {
             if (sucesso) {
                 System.out.println("\nTabuleiro Atualizado:");
                 tabuleiro.exibirTabuleiro(false);
+                System.out.println("Vc ganhou 1 ponto");/* Informa o ponto que o jogador ganhou */
+                jogadorAtual.aumentarPontos();/* Adiciona o ponto do jogador */
             } else {
                 tentativasInvalidas++;
                 System.out.println("Você errou! Tentativas erradas: " + tentativasInvalidas);
@@ -51,6 +55,12 @@ public class Partida {
         if (tentativasInvalidas == 3) {
             System.out.println("Você errou três vezes, perdeu!");
         }
+    }
+
+    public void mostrarPontuacao() {
+        System.out.println("\nPontuação atual:");
+        System.out.println("Jogador: " + jogador1.getNome() + ": " + jogador1.getPontos() + " pontos");
+        System.out.println("Jogador: " + jogador2.getNome() + ": " + jogador2.getPontos() + " pontos");
     }
 
     private void trocarTurno() {
