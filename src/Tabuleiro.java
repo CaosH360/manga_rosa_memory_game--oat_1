@@ -35,26 +35,26 @@ public class Tabuleiro {
         for (int i = 0; i < paresVermelhos; i++){
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++){
-                cartas.add(new Carta(code , "\u001B[41m")); //vermelho
+                cartas.add(new Carta(code , "\u001B[30m\u001B[41m")); //vermelho
             }
         }
 
         for (int i = 0; i < paresAzuis; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[44m")); //azul
+                cartas.add(new Carta(code, "\u001B[30m\u001B[44m")); //azul
             }
         }
         for (int i = 0; i < parPreto; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[40m")); //preto
+                cartas.add(new Carta(code, "\u001B[37m\u001B[40m")); //preto
             }
         }
         for (int i = 0; i < paresAmarelos; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[43m")); //amarelo
+                cartas.add(new Carta(code, "\u001B[30m\u001B[43m")); //amarelo
             }
         }
 
@@ -76,13 +76,21 @@ public class Tabuleiro {
         Random rand = new Random();
         char c1 = chars.charAt(rand.nextInt(chars.length()));
         char c2 = chars.charAt(rand.nextInt(chars.length()));
-        return "" + c1 + c2;
+        return " " + c1 + c2 + "  ";
     }
 
     public static class Carta {
         private String codigo;
         private String corFundo;
         private boolean revelada;
+
+        public void setCodigo(String codigo) {
+            this.codigo = codigo;
+        }
+
+        public void setCorFundo(String corFundo) {
+            this.corFundo = corFundo;
+        }
 
         public Carta(String codigo, String corFundo){
             this.codigo = codigo;
@@ -96,6 +104,10 @@ public class Tabuleiro {
 
         public String getCorFundo(){
             return corFundo;
+        }
+
+        public String getCodeCor() {
+            return corFundo + codigo;
         }
 
         public boolean isRevelada(){
@@ -142,7 +154,7 @@ public class Tabuleiro {
 
     // Método para exibir o tabuleiro no terminal
     public void exibirTabuleiro(boolean revelarALL){
-        System.out.println(".MangaRosaMemoryGame:");
+        System.out.println("MangaRosaMemoryGame:");
         System.out.print("   ");
 
         //Gera o cabeçalho numerado
@@ -154,12 +166,12 @@ public class Tabuleiro {
             System.out.printf("%-3d" , (i + 1));
             for (int j = 0; j < tamanho; j++){
                 if (board[i][j].isRevelada() || revelarALL){
-                    System.out.printf("%-5s", board[i][j].getCodigo());
+                    System.out.printf("%-5s\u001B[0m", board[i][j].getCodeCor());
                 } else{
-                    System.out.printf("%-5s" , "C");
+                    System.out.printf("\u001B[30m\u001B[47m%-5s", "C");
                 }
             }
-            System.out.println();
+            System.out.println("\u001B[0m");
         }
     }
 

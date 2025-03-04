@@ -65,7 +65,7 @@ public class MangaRosaMemoryGame {
 
         System.out.println("Nome do jogador 1: ");
         String nomeJogador1 = scanner.nextLine().trim();
-        String corJogador1 = "\u001B[44m";
+        String corJogador1 = "\u001B[30m\u001B[44m"; //azul
 
         //cria o objeto jogador
         Jogador jogador1 = new Jogador(nomeJogador1, corJogador1);
@@ -77,7 +77,7 @@ public class MangaRosaMemoryGame {
 
         System.out.print("\nNome do jogador 2: ");
         String nomeJogador2 = scanner.nextLine().trim();
-        String corJogador2 = "\u001B[41m";
+        String corJogador2 = "\u001B[41m"; //vermelho
 
         //cria o objeto jogador
         Jogador jogador2 = new Jogador(nomeJogador2, corJogador2);
