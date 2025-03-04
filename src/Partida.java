@@ -53,6 +53,7 @@ public class Partida {
         }
     }
 
-    private void trocarTurno()
-
+    private void trocarTurno() {
+        jogadorAtual = (jogadorAtual == jogador1) ? jogador2 : jogador1;
+    }
 }
