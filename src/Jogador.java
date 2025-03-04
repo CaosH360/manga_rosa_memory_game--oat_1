@@ -27,7 +27,6 @@ public class Jogador {
         if (this.pontucao < 0){
             this.pontucao = 0;
         }
-
     }
 
     public boolean isEmpty() {
