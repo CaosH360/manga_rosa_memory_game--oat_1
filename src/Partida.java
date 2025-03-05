@@ -25,39 +25,58 @@ public class Partida {
         tabuleiro.exibirTabuleiro(false);
 
         // Loop para permitir que o jogador escolha posições
-        for (int i = 1; i <= 2; i++) {
-
-
         while (tentativasInvalidas < 3) {
-            System.out.println("\nVez do jogador: " + jogadorAtual.getCor() + jogadorAtual.getNome() + "\u001B[0m");
+            // Variavel array para armazenar a linha da carta a ser revelada
+            int[] linha = new int[2];
 
-            System.out.println("Escolha as posições da linha e coluna que deseja: ");
-            System.out.println("Linha (1 a " + tabuleiro.getSize() + "): ");
-            int linha = scanner.nextInt();
+            // Variavel array para armazenar a coluna da carta a ser revelada
+            int[] coluna = new int[2];
 
-            System.out.println("Coluna (1 a " + tabuleiro.getSize() + "): ");
-            int coluna = scanner.nextInt();
+            // Variavel array para armazenar a carta a ser revelada
+            boolean[] cartaRevelada = new boolean[2];
 
-            // Tenta virar a carta
-            boolean sucesso = tabuleiro.revelarCarta((linha - 1), (coluna - 1));
-            if (sucesso) {
-                System.out.println("\nTabuleiro Atualizado:");
-                tabuleiro.exibirTabuleiro(false);
-                System.out.println("Vc ganhou 1 ponto");/* Informa o ponto que o jogador ganhou */
-                jogadorAtual.aumentarPontos();/* Adiciona o ponto do jogador */
-            } else {
-                tentativasInvalidas++;
-                System.out.println("Você errou! Tentativas erradas: " + tentativasInvalidas);
+            // Loop para garantir a requisição de duas cartas par serem reveladas e para verificar o par
+            for (int i = 0; i < 2 ; i++) {
+
+                System.out.println("\nVez do jogador: " + jogadorAtual.getCor() + jogadorAtual.getNome() + "\u001B[0m");
+
+                System.out.println("Escolha as posições da linha e coluna que deseja: ");
+                System.out.println("Linha (1 a " + tabuleiro.getSize() + "): ");
+                linha[i] = scanner.nextInt();
+
+                System.out.println("Coluna (1 a " + tabuleiro.getSize() + "): ");
+                coluna[i] = scanner.nextInt();
+
+                // Vira a carta conforme a posição
+                cartaRevelada[i] = tabuleiro.revelarCarta((linha[i] - 1), (coluna[i] - 1));
+                if (cartaRevelada[i]) {
+                    System.out.println("\nTabuleiro Atualizado:");
+
+                    // Exibe a carta no tabuleiro
+                    tabuleiro.exibirTabuleiro(false);
+                } else {
+                    tentativasInvalidas++;
+                    System.out.println("Você errou! Tentativas erradas: " + tentativasInvalidas);
+                }
             }
-        }
+            // Variavel para verificar se as cartas reveladas sao pares
+            boolean parVerify = tabuleiro.verificarPar((linha[0] - 1), (coluna[0] - 1), (linha[1] - 1), (coluna[1] - 1));
 
-            // Alterna para o próximo jogador
-            trocarTurno();
+            if (parVerify) {
+                // Confirma o par do jogador e atribui pontos
+                System.out.println("Você ganhou 1 ponto");/* Informa o ponto que o jogador ganhou */
+                jogadorAtual.aumentarPontos();/* Adiciona o ponto do jogador */
+            }else {
+                // Ocultar as cartas caso nao sejam pares
+                tabuleiro.ocultarCartas((linha[0] - 1), (coluna[0] - 1), (linha[1] - 1), (coluna[1] - 1));
+                System.out.println("Você errou o par, perdeu 1 ponto");/* Informa o ponto que o jogador perdeu por errar */
+                // Alterna para o próximo jogador
+                trocarTurno();
+            }
+
         }
 
         // Verifica se o jogador perdeu a vez
-        // CarlosComent: acho que essa logica esta errada, esse if faz com quie o jogador possa virar os pares 3 vezes antes de
-        //passar para o proximo, nao alterei para saber a opiniao dos outros e de quem fez
         if (tentativasInvalidas == 3) {
             System.out.println("Você errou três vezes, perdeu!");
         }
