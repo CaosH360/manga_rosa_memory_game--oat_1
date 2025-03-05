@@ -25,6 +25,9 @@ public class Partida {
         tabuleiro.exibirTabuleiro(false);
 
         // Loop para permitir que o jogador escolha posições
+        for (int i = 1; i <= 2; i++) {
+
+
         while (tentativasInvalidas < 3) {
             System.out.println("\nVez do jogador: " + jogadorAtual.getCor() + jogadorAtual.getNome() + "\u001B[0m");
 
@@ -46,12 +49,15 @@ public class Partida {
                 tentativasInvalidas++;
                 System.out.println("Você errou! Tentativas erradas: " + tentativasInvalidas);
             }
+        }
 
             // Alterna para o próximo jogador
             trocarTurno();
         }
 
         // Verifica se o jogador perdeu a vez
+        // CarlosComent: acho que essa logica esta errada, esse if faz com quie o jogador possa virar os pares 3 vezes antes de
+        //passar para o proximo, nao alterei para saber a opiniao dos outros e de quem fez
         if (tentativasInvalidas == 3) {
             System.out.println("Você errou três vezes, perdeu!");
         }
