@@ -75,23 +75,26 @@ public class MangaRosaMemoryGame {
         System.out.println("Nome do jogador 1: ");
         String nomeJogador1 = scanner.nextLine().trim();
         String corJogador1 = "\u001B[30m\u001B[44m"; //azul
+        String NomeCorJogador1 = "azul";
         if (nomeJogador1.isEmpty()) {
             nomeJogador1 = "PARTICIPANTE01";
         }/* joguei para cima o if para ficar padrao "jogador1" caso nao coloque nenhum nome */
 
         //cria o objeto jogador
-        Jogador jogador1 = new Jogador(nomeJogador1, corJogador1);
+        Jogador jogador1 = new Jogador(nomeJogador1, corJogador1, NomeCorJogador1);
 
         //ainda falta alteração
         System.out.print("\nNome do jogador 2: ");
         String nomeJogador2 = scanner.nextLine().trim();
         String corJogador2 = "\u001B[41m"; //vermelho
+        String NomeCorJogador2 = "vermelho";
+
         if (nomeJogador2.isEmpty()) {
             // a ideia é que ele caso não coloque nada no nome, o nome será "PARTICIPANTE"
             nomeJogador2 = "PARTICIPANTE02";/* Nmesma coisa de cima */
         }
         //cria o objeto jogador
-        Jogador jogador2 = new Jogador(nomeJogador2, corJogador2);
+        Jogador jogador2 = new Jogador(nomeJogador2, corJogador2, NomeCorJogador2);
 
         //ainda falta alteração
         System.out.println("Tabuleiro " + tamanho + "x" + tamanho + " escolhido!");

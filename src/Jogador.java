@@ -3,15 +3,26 @@ public class Jogador {
 
     private String nome;
     private String cor;
+    private String NomeCor;
     private int pontos;
 
     /* Tava pontuacao, mudei para pontos */
 
     //Construtor
-    public Jogador(String nome, String cor) {
+    public Jogador(String nome, String cor, String NomeCor) {
         this.nome = nome;
         this.cor = cor;
+        this.NomeCor = NomeCor;
         this.pontos = 0;/* Adicionei o pontos no contrutor */
+
+    }
+
+    public String getNomeCor() {
+        return NomeCor;
+    }
+
+    public void setNomeCor(String nomeCor) {
+        NomeCor = nomeCor;
     }
 
     public String getNome() {
@@ -26,9 +37,62 @@ public class Jogador {
         return pontos;/* Mudei para pontos */
     }
 
-    public void aumentarPontos() {
-        this.pontos++;
-        /* metodo para adicionar pontos */
+    public void Pontuar(Tabuleiro tabuleiro) {
+        boolean parVerif = tabuleiro.verificarPar((Partida.linha[0] - 1), (Partida.coluna[0] - 1), (Partida.linha[1] - 1), (Partida.coluna[1] - 1));
+        String corCarta = tabuleiro.getCarta((Partida.linha[0] - 1), (Partida.coluna[0] - 1)).getCorID();
+        String corJogador = getNomeCor();
+        if (parVerif){
+            if (corCarta == "vermelho" && corJogador == "vemelho") {
+                pontos = pontos + 5;
+                System.out.println("Você ganhou 5 ponto");
+            }
+            else if (corCarta == "vermelho" && corJogador == "azul") {
+            pontos = pontos + 1;
+                System.out.println("Você ganhou 1 ponto");
+            }
+            else if (corCarta == "azul"  && corJogador == "azul") {
+                pontos = pontos + 5;
+                System.out.println("Você ganhou 5 ponto");
+            }
+            else if (corCarta == "azul"  && corJogador == "vemelho") {
+                pontos = pontos + 1;
+                System.out.println("Você ganhou 1 ponto");
+            }
+            else if (corCarta == "amarelo") {
+                pontos = pontos + 1;
+                System.out.println("Você ganhou 1 ponto");
+            }
+            else if (corCarta == "preto") {
+                System.out.println("Você venceu o jogo por achar um par de cartas pretas");
+            }
+        }else {
+            if (corCarta == "vermelho" && corJogador == "vemelho") {
+                pontos = pontos - 1;
+                System.out.println("Você perdeu 1 ponto");
+            }
+            else if (corCarta == "vermelho" && corJogador == "azul") {
+                pontos = pontos - 2;
+                System.out.println("Você perdeu 2 ponto");
+            }
+            else if (corCarta == "azul"  && corJogador == "azul") {
+                pontos = pontos - 1;
+                System.out.println("Você perdeu 1 ponto");
+            }
+            else if (corCarta == "azul"  && corJogador == "vemelho") {
+                pontos = pontos - 2;
+                System.out.println("Você perdeu 2 ponto");
+            }
+            else if (corCarta == "amarelo") {
+                pontos = pontos - 1;
+                System.out.println("Você perdeu 1 ponto");
+            }
+            else if (corCarta == "preto") {
+                System.out.println("Você perdeu o jogo por nao encontrar o par de cartas pretas");
+            }
+        }
+        if(pontos < 0) {
+            pontos = 0;
+        }
     }
 
     public boolean isEmpty() {

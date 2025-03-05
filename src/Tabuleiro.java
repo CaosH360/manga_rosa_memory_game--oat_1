@@ -15,9 +15,12 @@ public class Tabuleiro {
         return board;
     }
 
+
     public int getSize(){
         return tamanho;
     }
+
+
 
     private void gerarTabuleiro(){
         //Distribuição das cartas
@@ -35,26 +38,26 @@ public class Tabuleiro {
         for (int i = 0; i < paresVermelhos; i++){
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++){
-                cartas.add(new Carta(code , "\u001B[30m\u001B[41m")); //vermelho
+                cartas.add(new Carta(code , "\u001B[30m\u001B[41m", "vermelho")); //vermelho
             }
         }
 
         for (int i = 0; i < paresAzuis; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[30m\u001B[44m")); //azul
+                cartas.add(new Carta(code, "\u001B[30m\u001B[44m", "azul")); //azul
             }
         }
         for (int i = 0; i < parPreto; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[37m\u001B[40m")); //preto
+                cartas.add(new Carta(code, "\u001B[37m\u001B[40m", "preto")); //preto
             }
         }
         for (int i = 0; i < paresAmarelos; i++) {
             String code = gerarRandomCode();
             for (int j = 0; j < 2; j++) {
-                cartas.add(new Carta(code, "\u001B[30m\u001B[43m")); //amarelo
+                cartas.add(new Carta(code, "\u001B[30m\u001B[43m", "amarelo")); //amarelo
             }
         }
 
@@ -68,6 +71,7 @@ public class Tabuleiro {
                 board[i][j] = it.next();
             }
         }
+
     }
 
     //Gera o codigo aleatorio
@@ -82,19 +86,29 @@ public class Tabuleiro {
     public static class Carta {
         private String codigo;
         private String corFundo;
+        private String corID;
         private boolean revelada;
 
         public void setCodigo(String codigo) {
             this.codigo = codigo;
         }
 
+        public String getCorID() {
+            return corID;
+        }
+
+        public void setCorID(String corID) {
+            this.corID = corID;
+        }
+
         public void setCorFundo(String corFundo) {
             this.corFundo = corFundo;
         }
 
-        public Carta(String codigo, String corFundo){
+        public Carta(String codigo, String corFundo, String corID){
             this.codigo = codigo;
             this.corFundo = corFundo;
+            this.corID = corID;
             this.revelada = false;
         }
 
@@ -116,6 +130,7 @@ public class Tabuleiro {
 
         public void setRevelada(boolean revelada){
             this.revelada = revelada;}
+
     }
 
     // Método para verificar se duas cartas reveladas sao um par
@@ -152,6 +167,8 @@ public class Tabuleiro {
         return true;
     }
 
+
+
     // Método para exibir o tabuleiro no terminal
     public void exibirTabuleiro(boolean revelarALL){
         System.out.println("MangaRosaMemoryGame:");
@@ -179,4 +196,6 @@ public class Tabuleiro {
     public Carta getCarta(int x, int y) {
         return board[x][y];
     }
+
+
 }
