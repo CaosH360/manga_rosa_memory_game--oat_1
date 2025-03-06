@@ -81,10 +81,12 @@ public class Partida {
 
 
                 if (jogadorAtual.isCartaPreta()) {
+                    // if para caso a carta preta tenha sido encontrada mas seu par também
                     System.out.println("=============================================================================");
                     System.out.println("O jogo acabou! " + jogadorAtual.getNome() + " venceu ao encontrar o par preto!");
                     System.out.println("==============================================================================");
                     mostrarPontuacao();
+                    // Retorna para o menu apos finalizar o jogo
                     return;
                 }
             }else {
@@ -94,10 +96,12 @@ public class Partida {
                 jogadorAtual.Pontuar(tabuleiro);
                 tabuleiro.exibirTabuleiro(false);
                 if (jogadorAtual.isCartaPreta()) {
+                    // if para caso a carta preta tenha sido encontrada mas seu par não
                     System.out.println("=============================================================================");
-                    System.out.println("O jogo acabou! " + jogadorAtual.getNome() + " perdeu por não encontrar o par preto!");
+                    System.out.println("O jogo acabou! "  + jogador1.getCor() +  jogadorAtual.getNome() + "\u001B[0m perdeu por não encontrar o par preto!");
                     System.out.println("================================================================================");
                     mostrarPontuacao();
+                    // Retorna para o menu apos finalizar o jogo
                     return;
                 } else {
                     trocarTurno();

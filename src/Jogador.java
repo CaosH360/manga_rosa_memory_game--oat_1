@@ -5,6 +5,7 @@ public class Jogador {
     private String cor;
     private String NomeCor;
     private int pontos;
+    // Variavel publica para verificar se uma carta preta foi virada
     public boolean cartaPreta = false;
 
     /* Tava pontuacao, mudei para pontos */
@@ -42,9 +43,13 @@ public class Jogador {
         return pontos;/* Mudei para pontos */
     }
 
+    // Método para pontuar jogador, positiva e negativamente
     public void Pontuar(Tabuleiro tabuleiro) {
+        // Verifica se a carta virada é par para atribuir a pontuação correta
         boolean parVerif = tabuleiro.verificarPar((Partida.linha[0] - 1), (Partida.coluna[0] - 1), (Partida.linha[1] - 1), (Partida.coluna[1] - 1));
+        // String para capturar a cor da carta virada
         String corCarta = tabuleiro.getCarta((Partida.linha[0] - 1), (Partida.coluna[0] - 1)).getCorID();
+        // String para capturar a cor do jogador atual
         String corJogador = getNomeCor();
         if (parVerif){
             if (corCarta.equals("vermelho") && corJogador.equals("vemelho")) {
