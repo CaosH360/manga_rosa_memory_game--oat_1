@@ -171,7 +171,9 @@ public class Tabuleiro {
 
     // Método para exibir o tabuleiro no terminal
     public void exibirTabuleiro(boolean revelarALL){
-        System.out.println("MangaRosaMemoryGame:");
+        System.out.println("|===================================|");
+        System.out.println("| ====== MangaRosaMemoryGame ====== |");
+        System.out.println("|===================================|");
         System.out.print("   ");
 
         //Gera o cabeçalho numerado
@@ -189,6 +191,7 @@ public class Tabuleiro {
                 }
             }
             System.out.println("\u001B[0m");
+
         }
     }
 

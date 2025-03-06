@@ -5,6 +5,7 @@ public class Jogador {
     private String cor;
     private String NomeCor;
     private int pontos;
+    public boolean cartaPreta = false;
 
     /* Tava pontuacao, mudei para pontos */
 
@@ -15,6 +16,14 @@ public class Jogador {
         this.NomeCor = NomeCor;
         this.pontos = 0;/* Adicionei o pontos no contrutor */
 
+    }
+
+    public boolean isCartaPreta() {
+        return cartaPreta;
+    }
+
+    public void setCartaPreta(boolean parPreto) {
+        this.cartaPreta = parPreto;
     }
 
     public String getNomeCor() {
@@ -60,6 +69,7 @@ public class Jogador {
             }
             else if (corCarta.equals("preto")) {
                 System.out.println("Você venceu o jogo por achar um par de cartas pretas");
+                setCartaPreta(true);
             }
         }else {
             if (corCarta.equals("vermelho") && corJogador.equals("vemelho")) {
@@ -84,6 +94,7 @@ public class Jogador {
             }
             else if (corCarta.equals("preto")) {
                 System.out.println("Você perdeu o jogo por nao encontrar o par de cartas pretas");
+                setCartaPreta(true);
             }
         }
         if(pontos < 0) {

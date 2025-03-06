@@ -29,7 +29,9 @@ public class Partida {
         Scanner scanner = new Scanner(System.in);
 
         // Exibe o tabuleiro inicial
-        System.out.println("\nTabuleiro Inicial:");
+        System.out.println("\n|===================================|");
+        System.out.println("| ======= Tabuleiro Inicial ======= |");
+
         tabuleiro.exibirTabuleiro(false);
 
         // Loop para permitir que o jogador escolha posições
@@ -41,9 +43,11 @@ public class Partida {
             // Loop para garantir a requisição de duas cartas par serem reveladas e para verificar o par
             for (int i = 0; i < 2 ; i++) {
                 mostrarPontuacao();
+                System.out.println("\n|====================================|");
+                System.out.println("| = Vez do jogador: " + jogadorAtual.getCor() + jogadorAtual.getNome() + "\u001B[0m = |");
+                System.out.println("|====================================|");
 
-                System.out.println("\nVez do jogador: " + jogadorAtual.getCor() + jogadorAtual.getNome() + "\u001B[0m");
-
+                System.out.println("\n|====================================|");
                 System.out.println("Escolha as posições da linha e coluna que deseja: ");
                 System.out.println("Linha (1 a " + tabuleiro.getSize() + "): ");
                 linha[i] = scanner.nextInt();
@@ -51,13 +55,17 @@ public class Partida {
                 System.out.println("Coluna (1 a " + tabuleiro.getSize() + "): ");
                 coluna[i] = scanner.nextInt();
 
+
+
                 // Vira a carta conforme a posição
                 cartaRevelada[i] = tabuleiro.revelarCarta((linha[i] - 1), (coluna[i] - 1));
                 if (cartaRevelada[i]) {
-                    System.out.println("\nTabuleiro Atualizado:");
+                    System.out.println("|===================================|");
+                    System.out.println("| ===== Tabuleiro Atualizado =====  |");
 
                     // Exibe a carta no tabuleiro
                     tabuleiro.exibirTabuleiro(false);
+
                 } else {
                     tentativasInvalidas++;
                     System.out.println("Você errou! Tentativas erradas: " + tentativasInvalidas);
@@ -68,28 +76,53 @@ public class Partida {
 
             if (parVerify) {
                 jogadorAtual.Pontuar(tabuleiro);
+
                 tabuleiro.exibirTabuleiro(false);
+
+
+                if (jogadorAtual.isCartaPreta()) {
+                    System.out.println("=============================================================================");
+                    System.out.println("O jogo acabou! " + jogadorAtual.getNome() + " venceu ao encontrar o par preto!");
+                    System.out.println("==============================================================================");
+                    mostrarPontuacao();
+                    return;
+                }
             }else {
                 // Ocultar as cartas caso nao sejam pares
                 tabuleiro.ocultarCartas((linha[0] - 1), (coluna[0] - 1), (linha[1] - 1), (coluna[1] - 1));
                 // Alterna para o próximo jogador
                 jogadorAtual.Pontuar(tabuleiro);
                 tabuleiro.exibirTabuleiro(false);
-                trocarTurno();
+                if (jogadorAtual.isCartaPreta()) {
+                    System.out.println("=============================================================================");
+                    System.out.println("O jogo acabou! " + jogadorAtual.getNome() + " perdeu por não encontrar o par preto!");
+                    System.out.println("================================================================================");
+                    mostrarPontuacao();
+                    return;
+                } else {
+                    trocarTurno();
+                }
             }
-
         }
 
         // Verifica se o jogador perdeu a vez
         if (tentativasInvalidas == 3) {
-            System.out.println("Você errou três vezes, perdeu!");
+            System.out.println("|===================================|");
+            System.out.println("| = Você errou três vezes, perdeu = |");
+            System.out.println("|===================================|");
+            mostrarPontuacao();
         }
+
     }
 
     public void mostrarPontuacao() {
-        System.out.println("\nPontuação atual:");
-        System.out.println("Jogador: " + jogador1.getCor() + jogador1.getNome() + ": " + jogador1.getPontos() + "\u001B[0m pontos");
-        System.out.println("Jogador: " + jogador2.getCor() + jogador2.getNome() + ": " + jogador2.getPontos() + "\u001B[0m pontos");
+        System.out.println("\n|=========================================|");
+        System.out.println("| =========== Pontuação atual =========== |");
+        System.out.println("|=========================================|");
+        System.out.println("| == Jogador: " + jogador1.getCor() + jogador1.getNome() + ": " + jogador1.getPontos() + "\u001B[0m pontos == |");
+        System.out.println("| == Jogador: " + jogador2.getCor() + jogador2.getNome() + ": " + jogador2.getPontos() + "\u001B[0m pontos == |");
+        System.out.println("|=========================================|");
+
     }
 
     private void trocarTurno() {
